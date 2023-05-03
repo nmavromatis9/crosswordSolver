@@ -5,7 +5,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import flask_login
 import os
-from pydictionary import Dictionary
+from nltk.corpus import words
+import re
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -18,13 +19,30 @@ def index():
 def results():
     if request.method == 'POST':
         result = request.form
-        return render_template("result.html", form=result['crossword'], path=url_for('index'))
+        l=accessDict(result['crossword'])
+        return render_template("result.html", form=l, path=url_for('index'))
 
-def accessDict(word):
-    dict=Dictionary("fix")
-    print(dict)
+def accessDict(text):
+    l=[]
+    text=text.lower()
+    fixedString="^"
+    for ch in text:
+        if(ch=="*" or ch==" "):
+            fixedString=fixedString + ".{1}"
+        else:
+            fixedString=fixedString+ch
+    fixedString+="$"
+    
+    print(fixedString)
+        
+    word_list = words.words()
+    word_list=[word.lower() for word in word_list]
+    for e in word_list:
+        z=re.match(fixedString, e)
+        if z:
+            l.append(e)
+    return l
     
 if __name__ ==  "__main__":
     app.config['DEBUG'] = True
-    accessDict("word")
     app.run()
