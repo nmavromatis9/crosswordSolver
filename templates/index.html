@@ -10,8 +10,40 @@
     <link rel="stylesheet" href="static/css/custom.css">
     <title>Hello, world!</title>
   </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class=div class="navbar-header"> 
+      <ul class="navbar-nav">
+        <a class="navbar-brand" href="#" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-size:l;">Crossword Helper</a>
+        {% if current_user.is_authenticated %} <a class="navbar-brand ms-auto" href="{{path}}account" style="color:white">
+          <img src="{{url_for('static', filename='images/Walker.jpg')}}" class="rounded" style="border-radius:100%; height: 30px; float:right;
+width: 30px; object-fit: cover;">
+          Welcome Back, <span style="text-transform: capitalize"> {{current_user.id}} </span>
+      </a>
+      {% endif %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{{path}}" style="color:white">Home</a>
+        </li>
+        <li class="nav-item">
+         {% if current_user.is_authenticated %}<a class="nav-link" href="{{path}}logout" style="color:white">Sign Out</a>
+         {% else %}  <a class="nav-link" href="{{path}}logins" style="color:white">Sign In</a>
+         {% endif %}
+            
+        </li>
+        <li class="nav-item">
+         {% if current_user.is_authenticated == false %}<a class="nav-link" href="{{path}}signup" style="color:white">Sign Up</a>
+         {% endif %}
+            
+        </li>  
+        <li class="nav-item active">
+          <a class="nav-link" href="about" style="color:white">About</a>
+        </li>
+      </ul>
+       
+    </div>
+  </nav>
+  
   <body>
-    <h1>Welcome to the CrossWord Helper!</h1>
     <h3>Enter known characters exactly, with * or space for unknown characters</h3>
     <p>Input Word:
     <form id="gett" method="POST" action="/results">

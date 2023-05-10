@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+</head>
+<body>
+    <p>Sign Up:</p>
+    <form action='{{ path }}signup' method='POST'>
+    <input type='text' name='signupE' id='signupE' placeholder='email or username'/>
+    <input type='password' name='signupP' id='signupP' placeholder='password'/>
+    <input type='submit' name='submit'/>
+    </form>
+    <a href="{{ path }}">Home</a>
+</body>
+</html>

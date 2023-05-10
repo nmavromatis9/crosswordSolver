@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <p>Login:</p>
+    <form action='{{ path }}logins' method='POST'>
+        {{ csrf_token }}
+    <input type='text' name='email' id='email' placeholder='email or username'/>
+    <input type='password' name='password' id='password' placeholder='password'/>
+    <input type='submit' name='submit'/>
+    </form>
+    <a href="{{ path }}signup">SignUp</a>
+</body>
+</html>
