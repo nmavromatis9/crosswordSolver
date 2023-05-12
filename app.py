@@ -33,6 +33,8 @@ def results():
     if request.method == 'POST':
         result = request.form
         l=accessDict(result['crossword'])
+        if (len(l)==0):
+            return render_template("none.html")
         return render_template("result.html", form=l, path=url_for('results'))
     
 
