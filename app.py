@@ -28,10 +28,12 @@ login_manager.init_app(app)
 def index():
     return render_template('index.html', path=url_for('index'))
 
-@app.route('/results', methods = ['POST'])
+@app.route('/results', methods = ['POST', 'GET'])
 def results():
-    return render_template("none.html")
-    
+    result = request.form
+    l=accessDict(result['crossword'])
+    return render_template("result.html", form=l, path=url_for('index'))
+
 @app.route('/about', methods=['GET', 'POST'])
 def about():   
     return render_template('about.html', path=url_for('index'))
