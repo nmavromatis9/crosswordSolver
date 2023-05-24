@@ -1,3 +1,10 @@
+html{
+    background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg);
+}
+
+form{
+    background-image: url(https://e1.pxfuel.com/desktop-wallpaper/1000/385/desktop-wallpaper-dark-blue-backgrounds-63738-nice-purple-and-blue-backgrounds.jpg);
+}
 body{
     background-color:#eee;
     font-family: "Poppins", sans-serif;
@@ -23,3 +30,26 @@ body{
 
 
    }
+
+
+   .prompt{
+    border:5px solid black;
+    background-image:url(https://e1.pxfuel.com/desktop-wallpaper/1000/385/desktop-wallpaper-dark-blue-backgrounds-63738-nice-purple-and-blue-backgrounds.jpg);
+    margin:0;
+    color:white;
+   }
+
+.prompt2{
+    border:5px solid black;
+    background-color: #212529;
+    margin:0;
+}
+
+.inp{
+    height:75px; width:500px; font-size: x-large;
+}
+
+.sub{
+    height:50px; width:100px;
+    background-color: #212529;
+}
