@@ -32,7 +32,7 @@ def index():
 def results():
     if request.method == 'POST':
         result = request.form
-        l=accessDict(result['crossword'])
+        l=finSearch(result['crossword'])
         if (len(l)==0):
             return render_template("none.html", path=url_for('index'))
         return render_template("result.html", form=l, path=url_for('index'))
@@ -101,6 +101,26 @@ def signup():
             return str(e)
         return render_template("user_added.html", usr=name, path=url_for('index'))
 #Functions################################################################################
+
+def finSearch(text):
+    l=[]
+    with open("goodWords.txt", "r") as g:
+        words=[lin.strip() for lin in g]  
+    text=text.lower()
+    fixedString="^"
+    for ch in text:
+        if(ch=="*" or ch==" "):
+            fixedString=fixedString + ".{1}"
+        else:
+            fixedString=fixedString+ch
+    fixedString+="$"
+    for w in words:
+        z=re.match(fixedString, w)
+        if z:
+            l.append(w)
+    return(l)
+
+###deprecated function
 def accessDict(text):
     l=[]
     text=text.lower()
@@ -176,7 +196,6 @@ def request_loader(request):
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized', 401
-
     
 if __name__ ==  "__main__":
     app.config['DEBUG'] = True
