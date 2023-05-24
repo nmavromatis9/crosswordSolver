@@ -36,7 +36,9 @@ def results():
         if (len(l)==0):
             return render_template("none.html", path=url_for('index'))
         return render_template("result.html", form=l, path=url_for('index'))
-
+    else:
+        return render_template("none.html", path=url_for('index'))
+    
 @app.route('/about', methods=['GET', 'POST'])
 def about():   
     return render_template('about.html', path=url_for('index'))
