@@ -30,8 +30,14 @@ def index():
 
 @app.route('/results', methods = ['POST', 'GET'])
 def results():
-    l=accessDict("chic***")
-    return render_template("result.html", form=l, path=url_for('index'))
+    if request.method == 'POST':
+        result = request.form
+        l=accessDict(result['crossword'])
+        if (len(l)==0):
+            return render_template("none.html", path=url_for('index'))
+        return render_template("result.html", form=l, path=url_for('index'))
+    else:
+        return render_template("none.html", path=url_for('index'))
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():   
